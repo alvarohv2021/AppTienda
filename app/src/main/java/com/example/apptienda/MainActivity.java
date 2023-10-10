@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         int totalPrecio = Integer.parseInt(viewTotalPrecio.getText().toString());
         int cantidadTotal = Integer.parseInt(viewCantidadTotal.getText().toString());
 
-        viewTotalPrecio.setText(totalPrecio);
+        viewTotalPrecio.setText(totalPrecio+1+"");
         viewCantidadTotal.setText(cantidadTotal+1+"");
 
     }

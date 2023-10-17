@@ -47,15 +47,15 @@
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:src="@drawable/pan" />
+                android:layout_weight="2"
+                android:src="@drawable/carne" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingRight="16dp"
-                android:text="Pan" />
+                android:text="Carne" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,9 +67,17 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:onClick="añadir"
                 android:text="Añadir"></Button>
+
+            <Button
+                android:id="@+id/btnCarneInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="info"
+                android:text="->"></Button>
         </LinearLayout>
 
         <LinearLayout
@@ -81,7 +89,7 @@
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:src="@drawable/pan" />
 
             <TextView
@@ -102,9 +110,17 @@
                 android:id="@+id/btnPan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:onClick="añadir"
                 android:text="Añadir"></Button>
+
+            <Button
+                android:id="@+id/btnPanInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="info"
+                android:text="->"></Button>
         </LinearLayout>
 
     </LinearLayout>

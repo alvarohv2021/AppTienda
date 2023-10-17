@@ -2,6 +2,7 @@ package com.example.apptienda;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
         // Eliminar el símbolo de euro (€) y convertir el precio a un número
 
         viewCantidadTotal.setText((cantidadTotal + 1) + "");
+
     }
 
+    public void info(View view) {
+        Intent intent = new Intent(this, Producto.class);
+        intent.putExtra("producto", "valor");
+        startActivity(intent);
+
+    }
 }

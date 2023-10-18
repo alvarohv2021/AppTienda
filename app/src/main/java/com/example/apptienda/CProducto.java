@@ -1,38 +1,57 @@
 package com.example.apptienda;
 
-public class CProducto {
-    public static class Producto {
-        int imagen;
-        /*para setear, en una view, la imagen guardada en esta variable, se haria de la siguiente manera:
-        imageView.setImageResource(R.drawable.pan);*/
+import android.os.Parcel;
+import android.os.Parcelable;
 
-        String nombre;
-        int precio;
+public class CProducto implements Parcelable {
+    private String nombre;
+    private int precio;
 
-        public int getImagen() {
-            return imagen;
-        }
-
-        public void setImagen(int imagen) {
-            this.imagen = imagen;
-        }
-
-        public String getNombre() {
-            return nombre;
-        }
-
-        public void setNombre(String nombre) {
-            this.nombre = nombre;
-        }
-
-        public int getPrecio() {
-            return precio;
-        }
-
-        public void setPrecio(int precio) {
-            this.precio = precio;
-        }
+    public CProducto(String nombre, int precio) {
+        this.nombre = nombre;
+        this.precio = precio;
     }
 
+    // Implementa el constructor Parcelable
+    protected CProducto(Parcel in) {
+        nombre = in.readString();
+        precio = in.readInt();
+    }
 
+    // Implementa el método writeToParcel para escribir los datos en el Parcel
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(nombre);
+        dest.writeInt(precio);
+    }
+
+    // Implementa el método describeContents
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    // Agrega un Creator para Parcelable
+    public static final Parcelable.Creator<CProducto> CREATOR = new Parcelable.Creator<CProducto>() {
+        @Override
+        public CProducto createFromParcel(Parcel in) {
+            return new CProducto(in);
+        }
+
+        @Override
+        public CProducto[] newArray(int size) {
+            return new CProducto[size];
+        }
+    };
+
+    // Getter y Setter de los atributos nombre y precio
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    // Resto de la clase...
 }

@@ -1,47 +1,45 @@
 package com.example.apptienda;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-public class MainActivity extends AppCompatActivity {
 
+import java.io.Serializable;
+
+public class MainActivity extends AppCompatActivity {
+    CProducto producto = new CProducto("Carne",10);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
     }
 
     public void añadir(View view) {
-        TextView viewTotalPrecio = findViewById(R.id.precioTotal);
-        TextView viewCantidadTotal = findViewById(R.id.cantidadTotal);
+        TextView viewPrecioTotal;
+        int precioTotla;
 
-        // Obtener el precio actual del TextView asociado al botón
-        String precioActual = ((TextView) ((ViewGroup) view.getParent()).getChildAt(2)).getText().toString();
+        viewPrecioTotal = findViewById(R.id.precioTotal);
 
-        // Eliminar el símbolo de euro (€) y convertir el precio a un número
-        int precioProducto = Integer.parseInt(precioActual.replace("€", ""));
+        precioTotla = Integer.parseInt(viewPrecioTotal.getText().toString().replace("€", ""));
+        precioTotla = producto.getPrecio()+precioTotla;
 
-        // Actualizar el total del precio y la cantidad
-        String totalPrecio = viewTotalPrecio.getText().toString();
-        int precioTotalProductos = Integer.parseInt(totalPrecio.replace("€", ""));
-        int cantidadTotal = Integer.parseInt(viewCantidadTotal.getText().toString());
-
-        // Actualizar el total del precio y la cantidad
-        viewTotalPrecio.setText((precioTotalProductos + precioProducto) + "€");
-        // Eliminar el símbolo de euro (€) y convertir el precio a un número
-
-        viewCantidadTotal.setText((cantidadTotal + 1) + "");
+        viewPrecioTotal.setText(precioTotla+"€");
 
     }
 
     public void info(View view) {
-        Intent intent = new Intent(this, Producto.class);
-        intent.putExtra("producto", "valor");
-        startActivity(intent);
+        Intent activityProducto = new Intent(this, Producto.class);
+        activityProducto.putExtra("producto", (Parcelable) producto);
+
+        startActivity(activityProducto);
 
     }
 }

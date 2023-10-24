@@ -4,11 +4,12 @@ import java.util.ArrayList;
 
 public class ProductList {
     public static ArrayList<Product> createProductList() {
+
         ArrayList<Product> productList = new ArrayList<>();
 
         // Agrega productos a la lista
-        productList.add(new Product(1, "Manzana", 29.99F));
-        productList.add(new Product(2, "Plátano", 19.99F));
+        productList.add(new Product(R.drawable.carne, "Carne", 29.99F));
+        productList.add(new Product(R.drawable.pan, "Pan", 1.99F));
         productList.add(new Product(3, "Naranja", 39.99F));
         productList.add(new Product(4, "Uva", 24.99F));
         productList.add(new Product(5, "Pera", 34.99F));

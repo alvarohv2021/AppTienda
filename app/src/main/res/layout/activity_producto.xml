@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingRight="16dp"
-                    android:text="" />
+                    android:text="Carne" />
 
                 <TextView
                     android:id="@+id/precio_producto"
@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingRight="16dp"
-                    android:text="" />
+                    android:text="15" />
 
                 <Button
                     android:layout_width="wrap_content"

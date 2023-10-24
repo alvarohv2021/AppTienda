@@ -26,20 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(product_recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     public void añadir(View view) {
 
 
     }
-
-/*
-    public void info(View view) {
-        Intent activityProducto = new Intent(this, Product.class);
-        activityProducto.putExtra("producto", (Parcelable) producto);
-
-        startActivity(activityProducto);
-
-    }
-*/
 }

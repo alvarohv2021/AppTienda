@@ -1,10 +1,13 @@
 package com.example.apptienda;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
-import android.text.Layout;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 // imports necessaris
 
@@ -46,6 +48,16 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
         holder.nombreProducto.setText(productList.get(position).getNombre());
         holder.precioProducto.setText(productList.get(position).getPrecio() + "");
 
+        holder.botonProducto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ProductActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+
+
     }
 
     @Override
@@ -60,6 +72,8 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
         private TextView nombreProducto;
         private TextView precioProducto;
 
+        private Button botonProducto;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,6 +83,7 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
             imagenProducto = itemView.findViewById(R.id.imageView);
             nombreProducto = itemView.findViewById(R.id.nombre);
             precioProducto = itemView.findViewById(R.id.precio);
+            botonProducto = itemView.findViewById(R.id.button2);
 
         }
     }

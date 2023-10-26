@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -22,15 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.product_list_recycler);
         ArrayList<Product> listaProductos = createProductList();
+
         Product_RecyclerViewAdapter product_recyclerViewAdapter = new Product_RecyclerViewAdapter(recyclerView.getContext(), listaProductos);
 
         recyclerView.setAdapter(product_recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-    }
-
-    public void añadir(View view) {
-
 
     }
 }

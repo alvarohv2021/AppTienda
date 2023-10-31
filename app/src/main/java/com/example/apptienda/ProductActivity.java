@@ -16,7 +16,7 @@ public class ProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_activity);
 
         Intent intent = getIntent();
-        Product product = (Product) intent.getSerializableExtra("PRODUCT");
+        Product product = (Product) intent.getExtras().get("PROCUCT");
 
         introducirContenido(product);
     }
@@ -32,10 +32,10 @@ public class ProductActivity extends AppCompatActivity {
         precioProducto = findViewById(R.id.precio);
         descripcionProducto = findViewById(R.id.descripcion);
 
-//        imagenProducto.setImageResource(product.getImagen());
-//        nombreProducto.setText(product.getNombre());
-//        precioProducto.setText(product.getPrecio() + "");
-//        descripcionProducto.setText(product.getDescripcion());
+        imagenProducto.setImageResource(product.getImagen());
+        nombreProducto.setText(product.getNombre());
+        precioProducto.setText(product.getPrecio() + "");
+        descripcionProducto.setText(product.getDescripcion());
 
     }
 }

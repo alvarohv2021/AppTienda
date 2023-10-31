@@ -1,16 +1,11 @@
 package com.example.apptienda;
 
-import static com.example.apptienda.ProductList.createProductList;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -19,9 +14,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecyclerView recyclerView = findViewById(R.id.product_list_recycler);
-        ArrayList<Product> listaProductos = createProductList();
+        //ArrayList<Product> listaProductos = createProductList();
 
-        Product_RecyclerViewAdapter product_recyclerViewAdapter = new Product_RecyclerViewAdapter(recyclerView.getContext(), listaProductos);
+        ProductList productList = new ProductList();
+        productList.createProductList();
+
+        Product_RecyclerViewAdapter product_recyclerViewAdapter = new Product_RecyclerViewAdapter(recyclerView.getContext(), productList);
 
         recyclerView.setAdapter(product_recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -2,6 +2,7 @@ package com.example.apptienda;
 
 import static androidx.core.content.ContextCompat.startActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -22,9 +23,9 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
 
     // constructor amb Context i productList.
     private Context context;
-    private ArrayList<Product> productList;
+    private ProductList productList;
 
-    public Product_RecyclerViewAdapter(Context context, ArrayList<Product> productList) {
+    public Product_RecyclerViewAdapter(Context context, ProductList productList) {
         this.context = context;
         this.productList = productList;
     }
@@ -40,37 +41,41 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Product_RecyclerViewAdapter.MyViewHolder holder, int position) {
+    //La variable "position" recibe el valor en el momento en el que se estan creando los distintos elementos,
+    // ya que a medida que los crea, les va dando un index al que nosotros en el metodo hemos llamado "position".
+    public void onBindViewHolder(@NonNull Product_RecyclerViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         // Assignar valor als atributs XML (a partir de la posició que ocupen dins
         // l'ArrayList de productes)
         // ...
-        holder.imagenProducto.setImageResource(productList.get(position).getImagen());
-        holder.nombreProducto.setText(productList.get(position).getNombre());
-        holder.precioProducto.setText(productList.get(position).getPrecio() + "");
+        holder.imagenProducto.setImageResource(productList.getProduct(position).getImagen());
+        holder.nombreProducto.setText(productList.getProduct(position).getNombre());
+        holder.precioProducto.setText(productList.getProduct(position).getPrecio() + "");
+        holder.descripcionProducto.setText(productList.getProduct(position).getDescripcion() + "");
 
         holder.botonProducto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ProductActivity.class);
+                intent.putExtra("PROCUCT", productList.getProduct(position));
                 context.startActivity(intent);
             }
         });
-
 
 
     }
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return productList.getSize();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         // Declarar vistes del nostre "Producte"
         // ...
         private ImageView imagenProducto;
         private TextView nombreProducto;
         private TextView precioProducto;
+        private TextView descripcionProducto;
 
         private Button botonProducto;
 
@@ -83,7 +88,13 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
             imagenProducto = itemView.findViewById(R.id.imageView);
             nombreProducto = itemView.findViewById(R.id.nombre);
             precioProducto = itemView.findViewById(R.id.precio);
+            descripcionProducto = itemView.findViewById(R.id.descripcion);
             botonProducto = itemView.findViewById(R.id.button2);
+
+            itemView.setOnLongClickListener(view -> {
+                productList.remove(getAdapterPosition());
+                return true;
+            });
 
         }
     }

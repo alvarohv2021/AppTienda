@@ -45,6 +45,14 @@
                     android:text="Precio"
                     android:textAlignment="center" />
 
+                <TextView
+                    android:id="@+id/descripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descripcion"
+                    android:textAlignment="center"
+                    android:visibility="gone" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,7 +68,6 @@
                         android:id="@+id/button2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="añadir"
                         android:text="->" />
                 </LinearLayout>
 

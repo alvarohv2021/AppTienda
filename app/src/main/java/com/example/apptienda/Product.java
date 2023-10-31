@@ -1,14 +1,19 @@
 package com.example.apptienda;
 
-public class Product {
+import java.io.Serializable;
+
+//Que hace "implements Serializable"???
+public class Product implements Serializable {
     private int imagen;
     private String nombre;
     private float precio;
+    private String descripcion;
 
-    public Product(int imagen, String nombre, float precio) {
+    public Product(int imagen, String nombre, float precio, String descripcion) {
         this.imagen = imagen;
         this.nombre = nombre;
         this.precio = precio;
+        this.descripcion = descripcion;
     }
 
     public int getImagen() {
@@ -33,5 +38,13 @@ public class Product {
 
     public void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

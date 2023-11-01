@@ -93,6 +93,14 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
                 return true;
             });
 
+            itemView.setOnClickListener(view -> {
+                if (descripcionProducto.getVisibility() != View.VISIBLE){
+                    descripcionProducto.setVisibility(View.VISIBLE);
+                }else {
+                    descripcionProducto.setVisibility(View.GONE);
+                }
+            });
+
         }
     }
 }

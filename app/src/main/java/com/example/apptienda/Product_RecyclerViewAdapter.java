@@ -1,6 +1,5 @@
 package com.example.apptienda;
 
-import static androidx.core.content.ContextCompat.startActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,8 +13,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
 
 // imports necessaris
 
@@ -34,7 +31,6 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
     @Override
     public Product_RecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Assignar ("inflate") les vistes dels registres al RecyclerView
-        // ...
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recicler_view_row, parent, false);
         return new Product_RecyclerViewAdapter.MyViewHolder(view);
@@ -46,7 +42,6 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
     public void onBindViewHolder(@NonNull Product_RecyclerViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         // Assignar valor als atributs XML (a partir de la posició que ocupen dins
         // l'ArrayList de productes)
-        // ...
         holder.imagenProducto.setImageResource(productList.getProduct(position).getImagen());
         holder.nombreProducto.setText(productList.getProduct(position).getNombre());
         holder.precioProducto.setText(productList.getProduct(position).getPrecio() + "");
@@ -71,7 +66,6 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // Declarar vistes del nostre "Producte"
-        // ...
         private ImageView imagenProducto;
         private TextView nombreProducto;
         private TextView precioProducto;
@@ -79,20 +73,23 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
 
         private Button botonProducto;
 
-
+// <---------------------- Donde se declaran los metodos de cada "recicler_view_row" ---------------------->
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             // instanciar vistes (recuperar per identificador)
-            // ...
             imagenProducto = itemView.findViewById(R.id.imageView);
             nombreProducto = itemView.findViewById(R.id.nombre);
             precioProducto = itemView.findViewById(R.id.precio);
             descripcionProducto = itemView.findViewById(R.id.descripcion);
             botonProducto = itemView.findViewById(R.id.button2);
 
+
             itemView.setOnLongClickListener(view -> {
-                productList.remove(getAdapterPosition());
+                productList.remove(this.getAdapterPosition());
+
+                // Sin "notifyDataSetChanged()" la lista no se actualizara.
+                notifyDataSetChanged();
                 return true;
             });
 

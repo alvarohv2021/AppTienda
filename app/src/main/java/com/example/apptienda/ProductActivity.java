@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,12 +15,12 @@ public class ProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_activity);
 
         Intent intent = getIntent();
-        Product product = (Product) intent.getExtras().get("PROCUCT");
+        CProduct CProduct = (CProduct) intent.getExtras().get("PROCUCT");
 
-        introducirContenido(product);
+        introducirContenido(CProduct);
     }
 
-    private void introducirContenido(Product product) {
+    private void introducirContenido(CProduct CProduct) {
         ImageView imagenProducto;
         TextView nombreProducto;
         TextView precioProducto;
@@ -32,10 +31,10 @@ public class ProductActivity extends AppCompatActivity {
         precioProducto = findViewById(R.id.precio);
         descripcionProducto = findViewById(R.id.descripcion);
 
-        imagenProducto.setImageResource(product.getImagen());
-        nombreProducto.setText(product.getNombre());
-        precioProducto.setText(product.getPrecio() + "");
-        descripcionProducto.setText(product.getDescripcion());
+        imagenProducto.setImageResource(CProduct.getImagen());
+        nombreProducto.setText(CProduct.getNombre());
+        precioProducto.setText(CProduct.getPrecio() + "");
+        descripcionProducto.setText(CProduct.getDescripcion());
 
     }
 }

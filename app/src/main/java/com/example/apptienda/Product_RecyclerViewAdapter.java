@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 // imports necessaris
 
-public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_RecyclerViewAdapter.MyViewHolder> {
+public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_RecyclerViewAdapter.MyViewHolder> implements añadirProductos {
 
     // constructor amb Context i productList.
     private Context context;
@@ -46,6 +46,14 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
         holder.nombreProducto.setText(productList.getProduct(position).getNombre());
         holder.precioProducto.setText(productList.getProduct(position).getPrecio() + "");
         holder.descripcionProducto.setText(productList.getProduct(position).getDescripcion() + "");
+        holder.botonAñadirProducto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CProduct producto = productList.getProduct(position);
+
+            }
+        });
+
 
         holder.botonProducto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,13 +63,16 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
                 context.startActivity(intent);
             }
         });
-
-
     }
 
     @Override
     public int getItemCount() {
         return productList.getSize();
+    }
+
+    @Override
+    public void añadirProducto(int position) {
+
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -70,7 +81,7 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
         private TextView nombreProducto;
         private TextView precioProducto;
         private TextView descripcionProducto;
-
+        private Button botonAñadirProducto;
         private Button botonProducto;
 
 // <---------------------- Donde se declaran los metodos de cada "recicler_view_row" ---------------------->
@@ -78,11 +89,14 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
             super(itemView);
 
             // instanciar vistes (recuperar per identificador)
+
             imagenProducto = itemView.findViewById(R.id.imageView);
             nombreProducto = itemView.findViewById(R.id.nombre);
             precioProducto = itemView.findViewById(R.id.precio);
             descripcionProducto = itemView.findViewById(R.id.descripcion);
+            botonAñadirProducto = itemView.findViewById(R.id.añadir);
             botonProducto = itemView.findViewById(R.id.button2);
+
 
 
             itemView.setOnLongClickListener(view -> {

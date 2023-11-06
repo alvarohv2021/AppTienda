@@ -36,7 +36,7 @@ public class ProductList {
         return CProductList.size();
     }
 
-    public void remove(int product) {
-        CProductList.remove(product);
+    public void remove(int posicion) {
+        CProductList.remove(posicion);
     }
 }

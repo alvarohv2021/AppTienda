@@ -16,15 +16,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 // imports necessaris
 
-public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_RecyclerViewAdapter.MyViewHolder> implements añadirProductos {
+public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_RecyclerViewAdapter.MyViewHolder>{
 
     // constructor amb Context i productList.
     private Context context;
     private ProductList productList;
+    private añadirProductos listener;
 
-    public Product_RecyclerViewAdapter(Context context, ProductList productList) {
+    public Product_RecyclerViewAdapter(Context context, ProductList productList,  añadirProductos listener) {
         this.context = context;
         this.productList = productList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -39,18 +41,22 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
     @Override
     //La variable "position" recibe el valor en el momento en el que se estan creando los distintos elementos,
     // ya que a medida que los crea, les va dando un index al que nosotros en el metodo hemos llamado "position".
-    public void onBindViewHolder(@NonNull Product_RecyclerViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         // Assignar valor als atributs XML (a partir de la posició que ocupen dins
         // l'ArrayList de productes)
         holder.imagenProducto.setImageResource(productList.getProduct(position).getImagen());
         holder.nombreProducto.setText(productList.getProduct(position).getNombre());
         holder.precioProducto.setText(productList.getProduct(position).getPrecio() + "");
         holder.descripcionProducto.setText(productList.getProduct(position).getDescripcion() + "");
+        //"botonAñadirProducto" tiene una funcion que añade el precio del producto seleccionado al total
         holder.botonAñadirProducto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 CProduct producto = productList.getProduct(position);
 
+                // Llama al método de la interfaz para añadir el producto y su precio al valor total
+                listener.añadirProducto(position, producto.getPrecio());
             }
         });
 
@@ -70,11 +76,6 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
         return productList.getSize();
     }
 
-    @Override
-    public void añadirProducto(int position) {
-
-    }
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // Declarar vistes del nostre "Producte"
         private ImageView imagenProducto;
@@ -84,7 +85,7 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
         private Button botonAñadirProducto;
         private Button botonProducto;
 
-// <---------------------- Donde se declaran los metodos de cada "recicler_view_row" ---------------------->
+        // <---------------------- Donde se declaran los metodos de cada "recicler_view_row" ---------------------->
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -98,7 +99,6 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
             botonProducto = itemView.findViewById(R.id.button2);
 
 
-
             itemView.setOnLongClickListener(view -> {
                 productList.remove(this.getAdapterPosition());
 
@@ -108,9 +108,9 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
             });
 
             itemView.setOnClickListener(view -> {
-                if (descripcionProducto.getVisibility() != View.VISIBLE){
+                if (descripcionProducto.getVisibility() != View.VISIBLE) {
                     descripcionProducto.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     descripcionProducto.setVisibility(View.GONE);
                 }
             });

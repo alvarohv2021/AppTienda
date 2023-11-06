@@ -20,6 +20,7 @@ public class ProductActivity extends AppCompatActivity {
         introducirContenido(CProduct);
     }
 
+//Esta parte es para cuando se pulse el floatingButton y se cree un nuevo producto
     private void introducirContenido(CProduct CProduct) {
         ImageView imagenProducto;
         TextView nombreProducto;

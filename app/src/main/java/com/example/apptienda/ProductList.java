@@ -28,6 +28,7 @@ public class ProductList {
 
     }
 
+    //Creamos metodos propios que realizan la misma funcion que realizan metodos del arrayList para poder llamarlos
     public CProduct getProduct(int position) {
         return CProductList.get(position);
     }
@@ -38,5 +39,10 @@ public class ProductList {
 
     public void remove(int posicion) {
         CProductList.remove(posicion);
+    }
+
+    public void addProducto(CProduct product) {
+        //Añadimos un producto en la ultima posicion de la lista
+        CProductList.add(product);
     }
 }

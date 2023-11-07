@@ -5,14 +5,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity implements añadirProductos {
+public class MainActivity extends AppCompatActivity implements añadirProductos, AddProductToRecyclerView {
     private TextView precioTotalView;
     private TextView cantidadTotalView;
     private float total;
     private int cantidadTotal;
+    private Product_RecyclerViewAdapter product_recyclerViewAdapter;
+    private ProductList productList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +26,22 @@ public class MainActivity extends AppCompatActivity implements añadirProductos 
 
         RecyclerView recyclerView = findViewById(R.id.product_list_recycler);
 
-        ProductList productList = new ProductList();
+        productList = new ProductList();
         productList.createProductList();
 
-        Product_RecyclerViewAdapter product_recyclerViewAdapter = new Product_RecyclerViewAdapter(recyclerView.getContext(), productList, this);
+        product_recyclerViewAdapter = new Product_RecyclerViewAdapter(recyclerView.getContext(), productList, this);
 
         recyclerView.setAdapter(product_recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        Button añadirProductoAlRecyclerView = findViewById(R.id.añadirProducto);
+
+        añadirProductoAlRecyclerView.setOnClickListener(view -> {
+            AddProductDialog addProductDialog = new AddProductDialog();
+            addProductDialog.show(getSupportFragmentManager(), "");
+
+
+        });
 
     }
 
@@ -42,7 +54,8 @@ public class MainActivity extends AppCompatActivity implements añadirProductos 
     }
 
     @Override
-    public void añadirProducto(int position, float precio) {
+    public void añadirProductoAlCarrito(int position, float precio) {
+        //Añade el precio del producto al total del carrito y al total de productos en este
         total += precio;
         cantidadTotal++;
 
@@ -52,5 +65,12 @@ public class MainActivity extends AppCompatActivity implements añadirProductos 
 
         precioTotalView.setText("Total: " + stringTotal + "€");
         cantidadTotalView.setText(cantidadTotal + "");
+    }
+
+    @Override
+    public void addProductToRecyclerView(CProduct product) {
+
+        productList.addProducto(product);
+
     }
 }

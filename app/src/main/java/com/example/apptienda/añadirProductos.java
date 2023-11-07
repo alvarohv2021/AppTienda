@@ -2,6 +2,6 @@ package com.example.apptienda;
 
 public interface añadirProductos {
 
-    public void añadirProducto(int position, float precio);
+    public void añadirProductoAlCarrito(int position, float precio);
 
 }

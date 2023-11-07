@@ -57,7 +57,7 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
 
 
                 // Llama al método de la interfaz para añadir el producto y su precio al valor total
-                listener.añadirProducto(position, producto.getPrecio());
+                listener.añadirProductoAlCarrito(position, producto.getPrecio());
             }
         });
 

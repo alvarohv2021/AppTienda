@@ -22,6 +22,7 @@ public class AddProductDialog extends AppCompatDialogFragment {
     public Dialog onCreateDialog(@NonNull Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
         LayoutInflater inflater = this.getLayoutInflater();
         View view = inflater.inflate(R.layout.upload_product_dialog, null);
 

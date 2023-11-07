@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements añadirProductos,
             AddProductDialog addProductDialog = new AddProductDialog();
             addProductDialog.show(getSupportFragmentManager(), "");
 
-
         });
 
     }
@@ -71,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements añadirProductos,
     public void addProductToRecyclerView(CProduct product) {
 
         productList.addProducto(product);
+        product_recyclerViewAdapter.notifyDataSetChanged();
+
 
     }
 }

@@ -10,15 +10,16 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements añadirProductos {
     private TextView precioTotalView;
+    private TextView cantidadTotalView;
     private float total;
+    private int cantidadTotal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        precioTotalView = findViewById(R.id.precioTotal);
-        total = Float.parseFloat(precioTotalView.getText().toString());
-
+        getViewsCarrito();
 
         RecyclerView recyclerView = findViewById(R.id.product_list_recycler);
 
@@ -32,9 +33,24 @@ public class MainActivity extends AppCompatActivity implements añadirProductos 
 
     }
 
+    private void getViewsCarrito() {
+        precioTotalView = findViewById(R.id.precioTotal);
+        cantidadTotalView = findViewById(R.id.cantidadTotal);
+
+        total = Float.parseFloat(precioTotalView.getText().toString());
+        cantidadTotal = Integer.parseInt(cantidadTotalView.getText().toString());
+    }
+
     @Override
     public void añadirProducto(int position, float precio) {
         total += precio;
-        precioTotalView.setText("Total: " + total+"€");
+        cantidadTotal++;
+
+        //Con esto forzamos a que el resultado de la suma del producto seleccionado con el valor total
+        // de carrito este siempre representado con solo dos decimales
+        String stringTotal = String.format("%.2f", total);
+
+        precioTotalView.setText("Total: " + stringTotal + "€");
+        cantidadTotalView.setText(cantidadTotal + "");
     }
 }

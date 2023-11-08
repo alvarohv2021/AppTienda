@@ -93,6 +93,7 @@ public class Product_RecyclerViewAdapter extends RecyclerView.Adapter<Product_Re
 
             itemView.setOnLongClickListener(view -> {
                 productList.remove(getAdapterPosition());
+                notifyDataSetChanged();
                 return true;
             });
 

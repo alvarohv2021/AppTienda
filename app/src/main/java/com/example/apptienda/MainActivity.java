@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements añadirProductos,
 
         //-------------------------Ahora peta esto-------------------------
         añadirProductoAlRecyclerView.setOnClickListener(view -> {
+
             AddProductDialog addProductDialog = new AddProductDialog();
             addProductDialog.show(getSupportFragmentManager(), "");
 

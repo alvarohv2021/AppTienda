@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialogFragment;
@@ -21,6 +23,7 @@ public class AddProductDialog extends AppCompatDialogFragment {
 
     public Dialog onCreateDialog(@NonNull Bundle savedInstanceState) {
 
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = this.getLayoutInflater();
@@ -30,13 +33,15 @@ public class AddProductDialog extends AppCompatDialogFragment {
         viewDescripcion = view.findViewById(R.id.descripcionUploadProduct);
         viewPrecio = view.findViewById(R.id.precioUploadProduct);
 
+        Log.d("Hola", "Hola mundo desde el listener");
+
         builder.setView(view).setPositiveButton("Upload", (dialogInterface, i) -> {
 
             String nombre = viewNombre.getText().toString();
             String descricion = viewDescripcion.getText().toString();
-            Float precio = Float.valueOf(viewPrecio.getText().toString());
+            float precio = Float.valueOf(viewPrecio.getText().toString());
 
-            CProduct product = new CProduct(0, nombre, precio, descricion);
+            CProduct product = new CProduct(R.drawable.carne, nombre, precio, descricion);
 
             addProductToRecyclerView.addProductToRecyclerView(product);
         });
@@ -45,7 +50,7 @@ public class AddProductDialog extends AppCompatDialogFragment {
 
         });
 
-        return null;
+        return builder.create();
     }
 
     @Override

@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imagenUploadProduct"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -53,12 +53,6 @@
                 android:inputType="text"
                 android:text="Precio" />
 
-            <Button
-                android:id="@+id/añadirProducto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Añadir"
-                tools:ignore="NestedWeights" />
         </LinearLayout>
 
     </LinearLayout>

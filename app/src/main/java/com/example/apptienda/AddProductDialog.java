@@ -26,11 +26,11 @@ public class AddProductDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = this.getLayoutInflater();
         View view = inflater.inflate(R.layout.upload_product_dialog, null);
 
-        viewNombre = view.findViewById(R.id.nombre);
-        viewDescripcion = view.findViewById(R.id.descripcion);
-        viewPrecio = view.findViewById(R.id.precio);
+        viewNombre = view.findViewById(R.id.nombreUploadProduct);
+        viewDescripcion = view.findViewById(R.id.descripcionUploadProduct);
+        viewPrecio = view.findViewById(R.id.precioUploadProduct);
 
-        builder.setView(view).setPositiveButton("Upload", ((dialogInterface, i) -> {
+        builder.setView(view).setPositiveButton("Upload", (dialogInterface, i) -> {
 
             String nombre = viewNombre.getText().toString();
             String descricion = viewDescripcion.getText().toString();
@@ -39,7 +39,11 @@ public class AddProductDialog extends AppCompatDialogFragment {
             CProduct product = new CProduct(0, nombre, precio, descricion);
 
             addProductToRecyclerView.addProductToRecyclerView(product);
-        }));
+        });
+
+        builder.setView(view).setNegativeButton("Cancel", (dialogInterface, i) -> {
+
+        });
 
         return null;
     }

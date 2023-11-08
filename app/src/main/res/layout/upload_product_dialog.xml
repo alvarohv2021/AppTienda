@@ -31,7 +31,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/nombre"
+                android:id="@+id/nombreUploadProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -39,14 +39,14 @@
                 android:text="Nombre" />
 
             <EditText
-                android:id="@+id/descripcion"
+                android:id="@+id/descripcionUploadProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:text="Descripcion" />
 
             <EditText
-                android:id="@+id/precio"
+                android:id="@+id/precioUploadProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 public class MainActivity extends AppCompatActivity implements añadirProductos, AddProductToRecyclerView {
     private TextView precioTotalView;
@@ -17,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements añadirProductos,
     private Product_RecyclerViewAdapter product_recyclerViewAdapter;
     private ProductList productList;
 
+    private FloatingActionButton añadirProductoAlRecyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,18 +28,20 @@ public class MainActivity extends AppCompatActivity implements añadirProductos,
 
         getViewsCarrito();
 
-        RecyclerView recyclerView = findViewById(R.id.product_list_recycler);
-
         productList = new ProductList();
         productList.createProductList();
+
+        RecyclerView recyclerView = findViewById(R.id.product_list_recycler);
 
         product_recyclerViewAdapter = new Product_RecyclerViewAdapter(recyclerView.getContext(), productList, this);
 
         recyclerView.setAdapter(product_recyclerViewAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Button añadirProductoAlRecyclerView = findViewById(R.id.añadirProducto);
 
+        añadirProductoAlRecyclerView = findViewById(R.id.floatingButton);
+
+        //-------------------------Ahora peta esto-------------------------
         añadirProductoAlRecyclerView.setOnClickListener(view -> {
             AddProductDialog addProductDialog = new AddProductDialog();
             addProductDialog.show(getSupportFragmentManager(), "");
